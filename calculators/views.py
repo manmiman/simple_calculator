@@ -1,5 +1,4 @@
 import base64
-from unittest import result
 import numexpr
 from django.shortcuts import render
 
@@ -7,7 +6,6 @@ from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from .models import Equation
-# from .serializers import EquationSerializer
 
 class EquationCreate(APIView):
 
@@ -25,12 +23,12 @@ class EquationCreate(APIView):
         return solution
     
     @staticmethod
-    def create(equation, solution):
+    def create(encoding, equation, solution):
         Equation.objects.create(
+            encoding = encoding,
             equation = equation,
             result = solution
         )
-
         return
 
     def get(self, request):
@@ -41,7 +39,7 @@ class EquationCreate(APIView):
         # calculate the decoded equation
         solution = self.calculate(equation)
         # add equation and solution to db
-        self.create(equation, solution)
+        self.create(encoding, equation, solution)
         # return response with result
         data = {'error': equation, 'result': solution}
         return Response(data=data, status=status.HTTP_200_OK)
