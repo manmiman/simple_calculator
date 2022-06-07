@@ -19,8 +19,9 @@ class EquationCreate(APIView):
 
     @staticmethod
     def calculate(equation):
-        solution = numexpr.evaluate(equation)
-        return solution
+        solution = numexpr.evaluate(equation).item()
+        solution = round(solution, 3)
+        return str(solution)
     
     @staticmethod
     def create(encoding, equation, solution):
@@ -32,14 +33,28 @@ class EquationCreate(APIView):
         return
 
     def get(self, request):
-        # get encoding from query parameter
-        encoding = request.query_params["uery"]
-        # decode the encoding message
-        equation = self.decode_message(encoding)
-        # calculate the decoded equation
-        solution = self.calculate(equation)
-        # add equation and solution to db
-        self.create(encoding, equation, solution)
-        # return response with result
-        data = {'error': equation, 'result': solution}
-        return Response(data=data, status=status.HTTP_200_OK)
+        try:
+            # get encoding from query parameter
+            encoding = request.query_params["uery"]
+            # decode the encoding message
+            equation = self.decode_message(encoding)
+            # calculate the decoded equation
+            solution = self.calculate(equation)
+            # add equation and solution to db
+            self.create(encoding, equation, solution)
+            # return response with result
+        except:
+            error = True
+            message = "Invalid request"
+        else:
+            error = False
+            result = solution
+        
+        if error == True:
+            response_message = {'error': error, 'message': message}
+            status_code = status.HTTP_400_BAD_REQUEST
+        else:
+            response_message = {'error': error, 'result': result}
+            status_code = status.HTTP_200_OK
+
+        return Response(data=response_message, status=status_code)
