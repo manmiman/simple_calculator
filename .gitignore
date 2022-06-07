@@ -50,3 +50,6 @@ Thumbs.db
 
 # migration files
 */migrations/*
+
+# db
+db.sqlite3
