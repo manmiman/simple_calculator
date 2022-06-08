@@ -28,6 +28,7 @@ On error: { "error": true, "message": string }
 1. Clone repo on local dev machine
 2. Run 'pipenv install -r requirements.txt' to install required dependencies/packages
 3. Run 'pipenv shell' in project folder to activate virtual env
+4. Run 'python manage.py makemigrations' and 'python manage.py migrate' to migrate database
 5. Run 'python manage.py runserver' to deploy project to local server
 
 **Process to deploy project to heroku:**
