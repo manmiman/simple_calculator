@@ -1,3 +1,27 @@
+**Simple Calculator**
+
+This is a simple calculator project that is implemented through a web API.
+
+The service offers an endpoint that reads a string input (in base64 encoding) and parses it.
+It returns standard HTTP code and solution to the calculation in JSON form. If any error occurs, it will return standard HTTP code and general error message.
+
+An example calculus query:
+
+Original query: 2 * (23/(3*3))- 23 * (2*3)
+
+With encoding: MiAqICgyMy8oMyozKSktIDIzICogKDIqMyk=
+
+The specific endpoint is: 'https://simple-calculator-aiman.herokuapp.com/calculators/v1/qcalculus?uery=[input]'
+
+Input is a base64 encoded query.
+
+Return:
+
+On success: JSON response of format: { "error": false, "result": number }
+
+On error: { "error": true, "message": string }
+
+
 **Process to deploy project to heroku:**
 
 1. Create Procfile and add this line: web: 'gunicorn simple_calculator.wsgi --log-file -'
