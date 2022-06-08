@@ -21,6 +21,14 @@ On success: JSON response of format: { "error": false, "result": number }
 
 On error: { "error": true, "message": string }
 
+**Steps to run on local dev env**:
+- This project is built using python and django
+- Requirements: Python, Pipenv
+
+1. Clone repo on local dev machine
+2. Run 'pip install -r requirements.txt' to install required dependencies/packages
+3. Run 'pipenv shell' in project folder to activate virtual env
+5. Run 'python manage.py runserver' to deploy project to local server
 
 **Process to deploy project to heroku:**
 
@@ -48,7 +56,7 @@ On error: { "error": true, "message": string }
 
 12. Migrate database: 'heroku run python manage.py migrate'
 
-**How to test or use the simple calculator**:
+**How to test or use the simple calculator on heroku**:
 
 1. Simply type in the project's domain url and the calculator endpoint with query parameter: 'https://simple-calculator-aiman.herokuapp.com/calculators/v1/qcalculus?uery=[input]'
 
