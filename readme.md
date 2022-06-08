@@ -26,7 +26,7 @@ On error: { "error": true, "message": string }
 - Requirements: Python, Pipenv
 
 1. Clone repo on local dev machine
-2. Run 'pip install -r requirements.txt' to install required dependencies/packages
+2. Run 'pipenv install -r requirements.txt' to install required dependencies/packages
 3. Run 'pipenv shell' in project folder to activate virtual env
 5. Run 'python manage.py runserver' to deploy project to local server
 
