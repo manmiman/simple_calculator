@@ -1,1 +1,1 @@
-web: gunicorn simple_calculator.wsgi --log-file -
+web: gunicorn simple-calculator-aiman.wsgi --log-file -
