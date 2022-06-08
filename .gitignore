@@ -48,9 +48,6 @@ Thumbs.db
 *.mov
 *.wmv
 
-# migration files
-*/migrations/*
-
 # db
 .sqlite3
 
